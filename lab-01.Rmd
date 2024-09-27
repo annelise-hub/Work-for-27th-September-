@@ -16,18 +16,18 @@ library(tidyverse)
 ```{r load-data, message=FALSE}
 # Do not edit this code chunk!
 visitors <- read_csv("data/UK-visitor-numbers.csv")
-```
 
+```
 
 
 # Wrangling Data
 
 ## Question 1
 
-_How many tourist attractions are there in the data set?_
-
+How many tourist attractions are there in the data set?_
+348 tourist attractions 
 ```{r Q1}
-visitors %>% count()
+visitors %>% head(n=10)
 ```
 
 ### Exercise a.
@@ -37,7 +37,7 @@ _Create a frequency table of the number of tourist attractions in the data set b
 ```{r Ex_a}
 # Delete the comment '#' symbol at the start of the next line and complete the code. 
 
-#visitors %>% count(_____)
+#visitors %>% count(region)
 ```
 
 ### Exercise b.
@@ -47,7 +47,7 @@ _Create a frequency table by `admission` and `setting`._
 ```{r Ex_b}
 # Delete the comment '#' symbol at the start of the next line and complete the code.
 
-#visitors %>% count(_____, _____)
+#visitors %>% count(admission, setting)
 ```
 
 
@@ -58,17 +58,17 @@ _What are the variable data types?_
 ```{r Q2_part1}
 class(visitors$n_2022)
 ```
-
+numeric
 ```{r Q2_part2}
 visitors %>% summarise_all(class)
 ```
-
+character 
 
 
 ## Question 3
 
 _Which attraction had the most number of visitors in 2022?_
-
+The crown estate, windsor great park
 ```{r Q3}
 visitors %>% arrange(desc(n_2022))
 ```
@@ -78,8 +78,8 @@ visitors %>% arrange(desc(n_2022))
 _What are the top 10 most visited attractions in 2021?_
 ```{r Ex_c}
 #visitors %>% 
-#  arrange(____(____)) %>%
-#  head(n = ____)
+# arrange(vistors, attraction) %>%
+# head(n = 10)
 ```
 
 ## Question 4
@@ -89,14 +89,14 @@ _What is the admission charge for the `"National Museum of Scotland"`?_
 ```{r Q4}
 visitors %>% filter(attraction == "National Museum of Scotland")
 ```
-
+free (no charge)
 
 ### Exercise d.
 
 _Which attraction had exactly 565,772 visitors in 2022?_
 
 ```{r Ex_d}
-#visitors %>% filter(___ == ____)
+#visitors %>% filter(2022 == 565, 772)
 ```
 
 ### Exercise e.
@@ -112,7 +112,7 @@ _How many attraction had more than 1 million visitors in 2022?_
 ## Question 5
 
 _How many `"O"`utside attractions are there in the `"Yorkshire and the Humber"` region that gives `"Members"` free admission, which had more than 100,000 visitors in 2022?_
-
+3
 ```{r Q5}
 visitors %>%
   filter(
@@ -153,7 +153,9 @@ _How many regions have more than 50 tourist attraction in the data set? (Hint: Y
 ## Question 6
 
 _What are the mean and median visitor numbers in 2022 across all attractions?_
-
+mean_2022 med_2022
+      <dbl>    <dbl>
+1   351942.  184640.
 ```{r Q6}
 visitors %>% 
   summarise(
@@ -169,9 +171,9 @@ _Perform the same calculation for the 2021 admissions data._
 
 ```{r Ex_h}
 #visitors %>% 
-#  ______(
-#    __________,
-#    __________
+#  summarise(
+#    mean_2021 = mean(_2021),
+#    med_2021 = median(n_2021)
 #  )
 ```
 
